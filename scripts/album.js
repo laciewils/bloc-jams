@@ -30,6 +30,22 @@
      ]
  };
 
+ // A Third Example Album
+  var albumBeatles = {
+      title: '1',
+      artist: 'The Beatles',
+      label: 'Capitol',
+      year: '1962',
+      albumArtUrl: 'assets/images/album_covers/beatles.png',
+      songs: [
+          { title: 'I Want to Hold Your Hand', duration: '2:24' },
+          { title: 'A Hard Days Night', duration: '2:33' },
+          { title: 'All You Need is Love', duration: '3:46' },
+          { title: 'Penny Lane', duration: '3:00'},
+          { title: 'Hey Jude', duration: '7:03'}
+      ]
+  };
+
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -68,3 +84,11 @@
  window.onload = function() {
      setCurrentAlbum(albumPicasso);
  };
+
+ document.getElementById("album-cover").addEventListener("click", function(){
+   //alert("Hello World!");
+   var albumArray = [albumPicasso, albumMarconi, albumBeatles];
+   var i = Math.floor(Math.random() * 3);
+   setCurrentAlbum(albumArray[i]);
+
+ });
