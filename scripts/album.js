@@ -137,6 +137,17 @@ var clickHandler = function(targetElement) {
      setCurrentAlbum(albumPicasso);
  };
 
+ songListContainer.addEventListener('mouseover', function(event) {
+    // #1
+    if (event.target.parentElement.className === 'album-view-song-item') {
+      var songItem = getSongItem(event.target);
+
+          if (songItem.getAttribute('data-song-number') !== currentlyPlayingSong) {
+                songItem.innerHTML = playButtonTemplate;
+           }        }
+});
+
+
  for (var i = 0; i < songRows.length; i++) {
      songRows[i].addEventListener('mouseleave', function(event) {
        // Selects first child element, which is the song-item-number element
@@ -154,15 +165,6 @@ var clickHandler = function(targetElement) {
         });
  }
 
- songListContainer.addEventListener('mouseover', function(event) {
-    // #1
-    if (event.target.parentElement.className === 'album-view-song-item') {
-      var songItem = getSongItem(event.target);
-
-          if (songItem.getAttribute('data-song-number') !== currentlyPlayingSong) {
-                songItem.innerHTML = playButtonTemplate;
-           }        }
-});
 
  document.getElementById("album-cover").addEventListener("click", function(){
    //alert("Hello World!");
