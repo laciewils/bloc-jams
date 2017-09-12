@@ -141,9 +141,9 @@ var clickHandler = function(targetElement) {
 
  var currentlyPlayingSong = null;
 
- window.onload = function() {
+ //window.onload = function() {
      setCurrentAlbum(albumPicasso);
- };
+// };
 
  songListContainer.addEventListener('mouseover', function(event) {
     // #1
