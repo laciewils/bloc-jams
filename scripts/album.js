@@ -46,18 +46,17 @@
       ]
   };
 
- var createSongRow = function(songNumber, songName, songLength) {
-     var template =
-        '<tr class="album-view-song-item">'
-      + '  <td class="song-item-number">' + songNumber + '</td>'
-      + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
-      + '  <td class="song-item-title">' + songName + '</td>'
-      + '  <td class="song-item-duration">' + songLength + '</td>'
-      + '</tr>'
-      ;
+  var createSongRow = function(songNumber, songName, songLength) {
+      var template =
+         '<tr class="album-view-song-item">'
+         + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
+       + '  <td class="song-item-title">' + songName + '</td>'
+       + '  <td class="song-item-duration">' + songLength + '</td>'
+       + '</tr>'
+       ;
 
-     return template;
- };
+      return template;
+  };
 
  var setCurrentAlbum = function(album) {
      // #1
@@ -84,12 +83,21 @@
 
  var findParentByClassName = function(element, targetClass) {
      if (element) {
+       if (element.parent(targetClass).length <= 0){
+         console.log("No parent found");
+       }
+       else if (targetClass == null) {
+           console.log("No parent found with that class name");
+         }
+
+       else {
          var currentParent = element.parentElement;
          while (currentParent.className !== targetClass && currentParent.className !== null) {
              currentParent = currentParent.parentElement;
          }
          return currentParent;
      }
+   }
  };
 
  var getSongItem = function(element) {
@@ -144,7 +152,8 @@ var clickHandler = function(targetElement) {
 
           if (songItem.getAttribute('data-song-number') !== currentlyPlayingSong) {
                 songItem.innerHTML = playButtonTemplate;
-           }        }
+           }
+             }
 });
 
 
@@ -166,7 +175,7 @@ var clickHandler = function(targetElement) {
  }
 
 
- document.getElementById("album-cover").addEventListener("click", function(){
+ document.getElementsByClassName("album-cover-art")[0].addEventListener("click", function(){
    //alert("Hello World!");
    var albumArray = [albumPicasso, albumMarconi, albumBeatles];
    var i = Math.floor(Math.random() * 3);
